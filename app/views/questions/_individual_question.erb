@@ -1,3 +1,8 @@
 <tr>
-<td><a id = "question-title" href="/questions/<%=question.id%>"><%=question.title%></a></td>
+  <% userid = question.user_id %>
+  <% user = User.find_by(id: userid) %>
+<td><a id = "question-title" href="/questions/<%=question.id%>"><span class="bigger"><span class="bigger-orange">Question: </span><%=question.title%></span></a><br><br>
+<span class="smaller-white">Posted on <span class="orange"><%= question.created_at.strftime("%b %d, %Y at %l:%M %p") %></span> by <span class="orange"><%=user.username.capitalize%> </span></span>
+
+</td>
 </tr>

@@ -81,6 +81,12 @@ body {
   padding-left: 15%;
 }
 
+#logo-header img:hover {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
 
 #ask-a-question-button a {
   background-color: #3A5863;
@@ -283,6 +289,11 @@ body {
 
 .smaller {
   font-size: 75%;
+}
+
+.smaller-white {
+  font-size: 75%;
+  color: white;
 }
 
 
