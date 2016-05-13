@@ -1,0 +1,57 @@
+<div class= "container">
+  <div class="question-title">
+  <h1><%=@question.title%><% if logged_in? %><span class="vote-button"><%= erb :_question_vote_button %></span><% end %></h1>
+  </div>
+
+  <p class="question-description"><%=@question.description%></p>
+
+  <div class="comments-container">
+    <h4 class="orange-underline">Comments</h4>
+
+  <% if logged_in? %>
+  <a class='add-question-comment-link' href= "#" ><h4 class="white">Add a comment</a></h4>
+  <% end %>
+
+  <form action = "/questions/<%=@question.id%>/question_comment" method = "POST" class= "question-comment-form hidden">
+    <input id = "#question-comment-description" type ="text" name= "description" placeholder= "Your Comment">
+    <input type ="submit" value= "Submit Comment">
+  </form>
+
+
+  <ul id ="question-comment-list">
+      <% @question.comments.each do |comment| %>
+      <div class = "question">
+        <%= erb :'/comments/_individual_comment', locals: {answer: @answer, question: @question, comment: comment} %>
+      <% end %>
+    </ul>
+
+  <form action = "/questions/<%=@question.id%>/question_comment" method = "POST" class= "comment-form hidden">
+    <input type ="text" name= "description" placeholder= "Your Comment">
+    <input type ="submit" value= "Submit Comment">
+  </form>
+
+</div>
+
+  <div class="answer-container">
+  <h1 class="orange-underline">Answers</h1></div>
+
+    <ul id= "answer-list">
+
+    <% if logged_in? %>
+    <h3><a id= "add-answer-button" href= "#">Add an Answer</a></h3>
+    <% end %>
+
+    <form id= "answer-form" action = "/questions/<%=@question.id%>/answers" method = "POST" class= "hidden">
+    <input type ="text" name= "description" placeholder= "Your Answer">
+    <input type ="submit" value= "Submit Answer">
+  </form>
+
+    <% @answers.each do |answer| %>
+      <div class = "answer">
+        <%= erb :'/answers/_individual_answer', locals: {answer: answer, question: @question} %>
+        <% end %>
+      </div>
+    </ul>
+  </div>
+
+</div>
