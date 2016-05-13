@@ -6,7 +6,10 @@
   <table class="question-table">
   <% @user_questions.each do |question| %>
   <tr>
-  <td><a href="/questions/<%=question.id%>"><%= question.title %></a></td>
+  <td><a href="/questions/<%=question.id%>"><span class="bigger-orange">Question: </span><span class="bigger"><%= question.title %></a></span><br>
+    <span class="smaller">Posted on <%= question.created_at.strftime("%b %d, %Y at %l:%M %p") %></span>
+
+  </td>
   <% end %>
   </tr>
   </table>
@@ -17,8 +20,11 @@
   <table class="question-table">
   <% @user_answers.each do |answer| %>
   <tr>
-  <% @question_answered %>
-  <td>Question:<a href="/questions/<%=@question_answered.id%>"> <%=@question_answered.title%></a><br>Answer: <%= answer.description %></td>
+  <% @question_answered = Question.find_by(id: answer.question_id) %>
+  <td><span class="bigger-orange">Question:<a href="/questions/<%=@question_answered.id%>"> <%=@question_answered.title%></a></span><br>
+    <span class="orange">Answer:</span> <%= answer.description %><br>
+    <span class="smaller">Posted on <%= answer.created_at.strftime("%b %d, %Y at %l:%M %p") %></span></td>
+
   <% end %>
   </tr>
   </table>
@@ -32,8 +38,9 @@
       <% @commented_question_id = comment.commentable_id %>
       <% @question_commented_on = Question.find_by(id: @commented_question_id)%>
       <tr>
-      <td>Question: <a href="/questions/<%=@commented_question_id%>"><%= @question_commented_on.title %></a><br>
-      Comment: <%= comment.description %></td>
+      <td><span class="bigger-orange">Question: <a href="/questions/<%=@commented_question_id%>"><%= @question_commented_on.title %></a></span><br>
+      <span class="orange">Comment:</span> <%= comment.description %><br>
+     <span class="smaller">Posted on <%= comment.created_at.strftime("%b %d, %Y at %l:%M %p") %></span></td>
       <% end %>
     <% end %>
   </tr>
@@ -49,9 +56,10 @@
       <% @answer_commented_on = Answer.find_by(id: @commented_answer_id)%>
       <% @question_of_commented_answer = Question.find_by(id: @answer_commented_on.question_id) %>
       <tr>
-      <td>Question: <a href="/question/<%@question_of_commented_answer.id%>"><%=@question_of_commented_answer.title%></a><br>
-      Answer: <%= @answer_commented_on.description %><br>
-      Comment: <%= comment.description %>
+      <td><span class="bigger-orange">Question: <a href="/question/<%@question_of_commented_answer.id%>"><%=@question_of_commented_answer.title%></a></span><br>
+      <span class="orange">Answer:</span> <%= @answer_commented_on.description %><br>
+      <span class="orange">Comment:</span> <%= comment.description %><br>
+       <span class="smaller">Posted on <%= comment.created_at.strftime("%b %d, %Y at %l:%M %p") %></span>
       <% end %></td>
     <% end %>
   </tr>

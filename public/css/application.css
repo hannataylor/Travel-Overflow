@@ -166,6 +166,13 @@ body {
   color: #3A5863;
 }
 
+.answer {
+  word-wrap: break-word;
+  width: 40em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .answer-container {
   margin-left: auto;
   margin-right: auto;
@@ -251,7 +258,7 @@ body {
   line-height: 2em;
 }
 
-/* Change Font Colors */
+/* Change Font Colors/Size */
 
 .blue {
   color: #3A5863;
@@ -264,6 +271,21 @@ body {
 .white {
   color: white;
 }
+
+.bigger-orange {
+  font-size: 125%;
+  color: #D86E3E;
+}
+
+.bigger {
+  font-size: 125%;
+}
+
+.smaller {
+  font-size: 75%;
+}
+
+
 
 /* Sign Up/Login */
 .sign-form-container {

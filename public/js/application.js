@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   $('.vote').on("submit", function(e){
     e.preventDefault();
     var url = e.target.action;
@@ -12,6 +13,8 @@ $(document).ready(function() {
       $(".total-points").text(voteObject.points);
     })
   });
+
+
   $('#ask-a-question-button').on("click", "a", function(e){
     e.preventDefault();
     $('#question-form').show();
@@ -33,6 +36,8 @@ $(document).ready(function() {
       $('.question-table').prepend(response);
     });
   });
+
+
     $('#add-answer-button').on("click", function(e){
     e.preventDefault();
     $(this).hide()
@@ -54,6 +59,8 @@ $(document).ready(function() {
       $('#answer-list').append(response);
     });
   });
+
+
   $('.add-answer-comment-link').on("click", function(e){
     e.preventDefault();
     $(this).hide()
@@ -73,6 +80,8 @@ $(document).ready(function() {
     });
     });
   });
+
+
     $('.add-question-comment-link').on("click", function(e){
     e.preventDefault();
     $(this).hide()
