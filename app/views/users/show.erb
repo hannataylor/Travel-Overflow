@@ -1,0 +1,63 @@
+<div class="container">
+  <h1 class="blue">Welcome, <%= @user.username.capitalize %>!</h1>
+
+  <div class="profile-container">
+  <h2 class="orange-underline">Your Questions</h2>
+  <table class="question-table">
+  <% @user_questions.each do |question| %>
+  <tr>
+  <td><a href="/questions/<%=question.id%>"><%= question.title %></a></td>
+  <% end %>
+  </tr>
+  </table>
+  </div>
+
+  <div class="profile-container">
+  <h2 class="orange-underline">Your Answers</h2>
+  <table class="question-table">
+  <% @user_answers.each do |answer| %>
+  <tr>
+  <% @question_answered %>
+  <td>Question:<a href="/questions/<%=@question_answered.id%>"> <%=@question_answered.title%></a><br>Answer: <%= answer.description %></td>
+  <% end %>
+  </tr>
+  </table>
+  </div>
+
+  <div class="profile-container">
+  <h2 class="orange-underline">Comments on Questions</h2>
+  <table class="question-table">
+  <% @user_comments.each do |comment| %>
+    <% if comment.commentable_type == "Question" %>
+      <% @commented_question_id = comment.commentable_id %>
+      <% @question_commented_on = Question.find_by(id: @commented_question_id)%>
+      <tr>
+      <td>Question: <a href="/questions/<%=@commented_question_id%>"><%= @question_commented_on.title %></a><br>
+      Comment: <%= comment.description %></td>
+      <% end %>
+    <% end %>
+  </tr>
+  </table>
+  </div>
+
+  <div class="profile-container">
+  <h2 class="orange-underline">Comments on Answers</h2>
+  <table class="question-table">
+  <% @user_comments.each do |comment| %>
+    <% if comment.commentable_type == "Answer" %>
+      <% @commented_answer_id = comment.commentable_id %>
+      <% @answer_commented_on = Answer.find_by(id: @commented_answer_id)%>
+      <% @question_of_commented_answer = Question.find_by(id: @answer_commented_on.question_id) %>
+      <tr>
+      <td>Question: <a href="/question/<%@question_of_commented_answer.id%>"><%=@question_of_commented_answer.title%></a><br>
+      Answer: <%= @answer_commented_on.description %><br>
+      Comment: <%= comment.description %>
+      <% end %></td>
+    <% end %>
+  </tr>
+  </table>
+  </div>
+
+
+</div>
+
