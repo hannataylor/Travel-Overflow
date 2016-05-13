@@ -7,7 +7,7 @@
   <% @user_questions.each do |question| %>
   <tr>
   <td><a href="/questions/<%=question.id%>"><span class="bigger-orange">Question: </span><span class="bigger"><%= question.title %></a></span><br>
-    <span class="smaller">Posted on <%= question.created_at.strftime("%b %d, %Y at %l:%M %p") %></span>
+    <span class="smaller">Posted on <span class="orange"><%= question.created_at.strftime("%b %d, %Y at %l:%M %p") %></span></span>
 
   </td>
   <% end %>
