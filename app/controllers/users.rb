@@ -18,9 +18,9 @@ get '/users/:id' do
   @user_questions = Question.where(user_id: params[:id])
   @user_answers = Answer.where(user_id: params[:id])
   @user_comments = Comment.where(user_id: params[:id])
-  @user_answers.each do |answer|
-    @question_answered = Question.find_by(id: answer.question_id)
-  end
+  # @user_answers.each do |answer|
+  #   @question_answered = Question.find_by(id: answer.question_id)
+  # end
   erb :'/users/show'
 end
 
